@@ -11,7 +11,14 @@ const username = ref("");
 
 const enter = () => {
   const user: User = {
-    id: generateSlug(),
+    id: generateSlug(4, {
+      format: "kebab",
+      partsOfSpeech: ["adjective", "adjective", "adjective", "noun"],
+      categories: {
+        noun: ["technology"],
+        adjective: ["color", "condition", "quantity"],
+      },
+    }),
     username: username.value,
     isReady: false,
   };
@@ -36,7 +43,8 @@ const enter = () => {
           id="username"
           required
           autocomplete="off"
-          v-model="username"
+          maxlength="10"
+          v-model.trim="username"
           class="bg-transparent border-b border-l border-[#70C1B3] h-12 p-4 outline-none ring-0"
           placeholder="username..."
         />

@@ -15,7 +15,7 @@ const cardsSize = ref(8);
 const selectedCard = ref<number | null>(null);
 const isReady = ref(false);
 const votes = ref<Votes | null>(null);
-const average = ref<number | null>(null);
+const average = ref<string | null>(null);
 const users = ref<User[]>([]);
 
 const orderedUsers = computed(() => {
@@ -54,8 +54,16 @@ watch(votes, (votes) => {
   average.value = calculateAverage(votes);
 });
 
-const vote = () => {
-  SocketioService.emit("sendVote", { roomId, vote: selectedCard.value });
+const vote = (card: number) => {
+  if (selectedCard.value === card) {
+    selectedCard.value = null;
+    SocketioService.emit("clearVote", { roomId });
+    isReady.value = false;
+    return;
+  }
+
+  selectedCard.value = card;
+  SocketioService.emit("sendVote", { roomId, vote: card });
   isReady.value = true;
 };
 
@@ -164,7 +172,7 @@ onBeforeRouteLeave(() => {
           </li>
         </ul>
         <div
-          class="flex flex-col items-center justify-center gap-8"
+          class="flex flex-col items-center justify-center bg-[#70C1B3] text-[#50514F] p-4"
           v-if="votes"
         >
           <div class="text-xl">Average</div>
@@ -176,7 +184,7 @@ onBeforeRouteLeave(() => {
         >
           <li
             v-for="(voters, number) in votes"
-            class="p-4 w-32 min-h-[48px] h-full border border-[#70C1B3] flex flex-col items-center justify-around gap-8"
+            class="p-4 min-w-[8rem] min-h-[12rem] h-full border border-[#70C1B3] flex flex-col items-center justify-around gap-8"
           >
             <div class="text-5xl font-bold">{{ number }}</div>
             <ul class="flex flex-col items-center justify-center gap-4">
@@ -206,29 +214,28 @@ onBeforeRouteLeave(() => {
       </div>
       <Line v-if="!votes" />
       <div class="flex flex-col items-center gap-8" v-if="!votes">
-        <div class="flex items-center justify-between w-full">
+        <div class="flex items-center justify-start w-full">
           <div class="flex gap-4">
             <button
               @click="cardsSize++"
               class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
             >
-              Add card
+              Add a card
+            </button>
+            <button
+              @click="cardsSize += 5"
+              class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
+            >
+              Add 5 cards
             </button>
             <button
               :disabled="cardsSize <= 1"
               @click="if (cardsSize > 1) cardsSize--;"
               class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors disabled:pointer-events-none disabled:opacity-60"
             >
-              Remove card
+              Remove a card
             </button>
           </div>
-          <button
-            @click="vote"
-            :disabled="selectedCard === null"
-            class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 w-56 bg-[#70C1B3] text-[#50514F] hover:text-[#70C1B3] hover:bg-[#50514F] transition-colors disabled:pointer-events-none disabled:opacity-30"
-          >
-            {{ isReady ? "Change choice" : "Confirm choice" }}
-          </button>
         </div>
         <div>Select a card and vote!</div>
         <ul class="flex gap-4 items-center justify-center w-full flex-wrap">
@@ -240,7 +247,7 @@ onBeforeRouteLeave(() => {
                 ? 'text-[#50514F] bg-[#70C1B3]'
                 : 'border-dashed'
             "
-            @click="selectedCard = card"
+            @click="() => vote(card)"
           >
             {{ card }}
           </li>

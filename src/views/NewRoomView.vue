@@ -32,7 +32,14 @@ watch(
 
 const createRoom = () => {
   const room: Room = {
-    id: generateSlug(),
+    id: generateSlug(4, {
+      format: "kebab",
+      partsOfSpeech: ["adjective", "adjective", "adjective", "noun"],
+      categories: {
+        noun: ["technology"],
+        adjective: ["color", "condition", "quantity"],
+      },
+    }),
     ...(voteType.value === "ap"
       ? {
           voteType: voteType.value,

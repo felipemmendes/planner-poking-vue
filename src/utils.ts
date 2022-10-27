@@ -40,5 +40,5 @@ export const calculateAverage = (votes: Votes | null) => {
     voters += currVotes;
   }
 
-  return voters !== 0 ? sum / voters : null;
+  return voters !== 0 ? (sum / voters).toFixed(2) : null;
 };
