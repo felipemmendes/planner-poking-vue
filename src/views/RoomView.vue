@@ -214,28 +214,26 @@ onBeforeRouteLeave(() => {
       </div>
       <Line v-if="!votes" />
       <div class="flex flex-col items-center gap-8" v-if="!votes">
-        <div class="flex items-center justify-start w-full">
-          <div class="flex gap-4">
-            <button
-              @click="cardsSize++"
-              class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
-            >
-              Add a card
-            </button>
-            <button
-              @click="cardsSize += 5"
-              class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
-            >
-              Add 5 cards
-            </button>
-            <button
-              :disabled="cardsSize <= 1"
-              @click="if (cardsSize > 1) cardsSize--;"
-              class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors disabled:pointer-events-none disabled:opacity-60"
-            >
-              Remove a card
-            </button>
-          </div>
+        <div class="flex items-center justify-center w-full gap-4">
+          <button
+            @click="cardsSize++"
+            class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
+          >
+            Add a card
+          </button>
+          <button
+            @click="cardsSize += 5"
+            class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
+          >
+            Add 5 cards
+          </button>
+          <button
+            :disabled="cardsSize <= 1"
+            @click="if (cardsSize > 1) cardsSize--;"
+            class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors disabled:pointer-events-none disabled:opacity-60"
+          >
+            Remove a card
+          </button>
         </div>
         <div>Select a card and vote!</div>
         <ul class="flex gap-4 items-center justify-center w-full flex-wrap">
