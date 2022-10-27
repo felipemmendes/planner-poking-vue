@@ -42,7 +42,8 @@ const enter = () => {
         />
       </div>
       <button
-        class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 w-56 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
+        :disabled="!username"
+        class="flex items-center justify-center h-12 border border-[#70C1B3] p-4 w-56 hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors disabled:opacity-30 disabled:pointer-events-none"
         @click.prevent="enter"
       >
         Entrar
