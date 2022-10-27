@@ -241,7 +241,7 @@ onBeforeRouteLeave(() => {
         <ul class="flex gap-4 items-center justify-center w-full flex-wrap">
           <li
             v-for="card in cards"
-            class="p-4 w-24 h-24 text-2xl border border-[#70C1B3] flex items-center justify-center cursor-pointer hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
+            class="p-4 min-w-[6rem] h-24 text-2xl border border-[#70C1B3] flex items-center justify-center cursor-pointer hover:bg-[#70C1B3] hover:text-[#50514F] transition-colors"
             :class="
               selectedCard === card
                 ? 'text-[#50514F] bg-[#70C1B3]'
