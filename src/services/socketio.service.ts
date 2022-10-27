@@ -7,7 +7,7 @@ class SocketioService {
   }
 
   setupSocketConnection() {
-    this.socket = io(import.meta.env.VUE_APP_SOCKET_URL);
+    this.socket = io(import.meta.env.VITE_SOCKET_URL);
   }
 
   disconnect() {
