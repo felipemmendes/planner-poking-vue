@@ -28,3 +28,4 @@ coverage
 *.sw?
 
 .env
+/src/assets/styles.css
