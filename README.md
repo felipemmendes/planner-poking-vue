@@ -1,25 +1,20 @@
-# planner-poking-vue
+# Planner Poking (Client)
 
-This template should help get you started developing with Vue 3 in Vite.
+### Live at: https://planner-poking.fmmendes.com/  
+<br />
 
-## Recommended IDE Setup
+Planner Poking is a play on the words from the technique "Planning Poker", commonly used for estimating tasks for Scrum or other Agile frameworks.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+With this app, you and your team can:
+- create rooms with ease
+- use custom values for cards
+- see who is voting (or keep it anonymous with custom usernames)
 
-## Type Support for `.vue` Imports in TS
+In a room, all actions occur in real time with no need to create accounts or worry about saved data (nothing is saved!).
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+You can check the code for the server in the [Planner Poking (Server) repo](https://github.com/felipemmendes/planner-poking-ws).
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+I used this project to learn and apply [Vue](https://vuejs.org/) with a WebSocket connection.
 
 ## Project Setup
 
@@ -37,10 +32,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
